@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5499,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "docker-age",
+            "database": "postgres",
+            "username": "postgres"
+        }
+    ]
+}
