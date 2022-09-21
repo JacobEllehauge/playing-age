@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+    postgres:
+        container_name: playing_age_postgres_${USER:-anonymous}
+        build:
+            context: .
+            dockerfile: ./postgres/Dockerfile
+        image: playingage/postgres:${USER:-anonymous}
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "postgres"]
+            interval: 5s
+            retries: 5
+        ports:
+            - 5499:5432
+        volumes:
+            - postgres_data_volume:/var/lib/postgresql/data
+        environment:
+            - PGPORT=5499
+            - POSTGRES_PASSWORD=LOL
+        deploy:
+            resources:
+                limits:
+                    cpus: '1.0'
+                    memory: 8G
+
+volumes:
+    postgres_data_volume:
