@@ -12,11 +12,10 @@ services:
             test: ["CMD", "pg_isready", "-U", "postgres"]
             interval: 5s
             retries: 5
+        ports:
+            - 5499:5432
         volumes:
             - postgres_data_volume:/var/lib/postgresql/data
-        environment:
-            - PGPORT=5499
-            - POSTGRES_PASSWORD=LOL
         deploy:
             resources:
                 limits:

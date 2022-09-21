@@ -19,6 +19,8 @@
 
 FROM postgres:11
 
+COPY init.sql /docker-entrypoint-initdb.d/
+
 RUN apt-get update && apt-get install --assume-yes --no-install-recommends --no-install-suggests \
   bison \
   build-essential \
@@ -33,3 +35,4 @@ RUN cd /age && make install
 COPY age/docker-entrypoint-initdb.d/00-create-extension-age.sql /docker-entrypoint-initdb.d/00-create-extension-age.sql
 
 CMD ["postgres", "-c", "shared_preload_libraries=age"]
+
