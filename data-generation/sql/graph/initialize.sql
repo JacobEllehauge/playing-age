@@ -27,7 +27,7 @@ SELECT *
 FROM cypher('starting_here', $$
     MATCH (a:Person), (b:Person)
     WHERE a.name = 'Andres' AND b.name = 'Ben'
-    CREATE (a)-[e:RELTYPE {name:a.name + '<->' + b.name}]->(b)
+    CREATE (a)-[e:HAS_ADRESSE]->(b)
     RETURN e
 $$) as (e agtype);
 

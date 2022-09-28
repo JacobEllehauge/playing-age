@@ -13,7 +13,7 @@ services:
             interval: 5s
             retries: 5
         ports:
-            - 5499:5432
+            - 5499:5499
         volumes:
             - postgres_data_volume:/var/lib/postgresql/data
         environment:
@@ -24,6 +24,14 @@ services:
                 limits:
                     cpus: '1.0'
                     memory: 8G
+    age-viewer:
+        container_name: playing_age_viewer_${USER:-anonymous}
+        build:
+            context: .
+            dockerfile: ./age-viewer/Dockerfile
+        image: playingage/age-viewer:${USER:-anonymous}
+        ports:
+            - 3001:3001
 
 volumes:
     postgres_data_volume:
