@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install --assume-yes --no-install-recommends --no-
   postgresql-server-dev-11 \
   git
 
+RUN apt-get update && apt-get install -y vim
 
 COPY age /age
 RUN cd /age && make install
