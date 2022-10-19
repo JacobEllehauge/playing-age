@@ -46,9 +46,7 @@ def create_relation(start_node: str, end_node: str, start_node_property_value, e
 @timer
 def make_node_from_person(
         postgres_connection,
-        nodetype: str,
         no_nodes: int,
-        properties: Optional[Dict],
     )->None:
 
     with postgres_connection as conn:
