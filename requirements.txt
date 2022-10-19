@@ -1,3 +1,4 @@
 faker
 pandas
 psycopg2
+tqdm

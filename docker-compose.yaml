@@ -24,6 +24,8 @@ services:
                 limits:
                     cpus: '1.0'
                     memory: 8G
+        networks:
+            - playing_network
     age-viewer:
         container_name: playing_age_viewer_${USER:-anonymous}
         build:
@@ -32,6 +34,12 @@ services:
         image: playingage/age-viewer:${USER:-anonymous}
         ports:
             - 3001:3001
+        networks:
+            - playing_network
 
 volumes:
     postgres_data_volume:
+
+networks:
+    playing_network:
+        name: custom_playing_network
