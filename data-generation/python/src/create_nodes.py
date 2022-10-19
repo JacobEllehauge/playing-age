@@ -1,6 +1,7 @@
 from faker import Faker
 from typing import Dict, List, Optional
 import psycopg2
+from tqdm import tqdm
 from time import time
 
 
@@ -18,11 +19,10 @@ def timer(func):
     return wrap_func
 
 @timer
-def make_node(nodetype: str, no_nodes: int, properties: Optional[Dict])->None:
-
-    with psycopg2.connect("host=localhost port=5499  password='LOL' dbname=graphs user=postgres") as conn:
+def make_node(postgres_connection, nodetype: str, no_nodes: int, properties: Optional[Dict])->None:
+    with postgres_connection as conn:
         with conn.cursor() as curs:
-            for _list in create_person(n=100):
+            for _list in tqdm(create_person(n=no_nodes)):
                 q = f"""
                 SET search_path = ag_catalog;
                 SELECT *
@@ -49,11 +49,13 @@ def make_node(nodetype: str, no_nodes: int, properties: Optional[Dict])->None:
                 curs.execute(q)
 
 
-
 if __name__=="__main__":
-    no_nodes = 100000
-
+    no_nodes = 100
 
     print(f'hey there {create_person()[0][0]} from {create_person()[0][1]} ')
-    make_node(nodetype='Person', no_nodes=no_nodes, properties=None)
+    make_node(
+        postgres_connection = psycopg2.connect("host=localhost port=5499  password='LOL' dbname=graphs user=postgres"),
+        nodetype='Person',
+        no_nodes=no_nodes,
+        properties=None)
     print(f"Created { no_nodes} nodes!! GZ")
