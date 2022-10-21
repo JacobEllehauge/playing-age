@@ -3,8 +3,8 @@ the correct age:
 Intention is to verify the capabilities/current state of apache AGE extension for postgres
 
 1. Spin up postgres with AGE added in docker (y)
-2. Add nodes and relations by simulating data (... y)
-3. Add viewer container
+2. Add nodes and relations by simulating data (y)
+3. Add viewer container (y)
 4. look at updating, indexing, performance (merging, apoc-likes)
 
 
