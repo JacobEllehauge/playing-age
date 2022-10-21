@@ -11,10 +11,9 @@ ADD ./age-viewer/backend /app/backend
 
 COPY age-viewer/docker-entrypoint.sh /usr/local/bin/
 
+RUN docker-compose up
 
-docker-compose up
-
-python3 data-generation/python/src/create_nodes.py
+RUN python3 data-generation/python/src/create_nodes.py
 
 # sudo apt-get install build-essential libreadline-dev zlib1g-dev flex bison
 # make PG_CONFIG=/path/to/postgres/bin/pg_config install
